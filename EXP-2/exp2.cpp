@@ -1,34 +1,23 @@
-#include <iostream>
-using namespace std;
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if (n == 0) return 1.0;
 
-double power(double x, int y) {
-    if (y == 0)
-        return 1; 
-    
-    double temp = power(x, y / 2);
-    
- 
-    if (y % 2 == 0) {
-        return temp * temp;
-    } 
+        long long exp = n; 
+        if (exp < 0) {
+            x = 1 / x;
+            exp = -exp;
+        }
 
-    else {
-        if (y > 0)
-            return x * temp * temp; 
-        else
-            return (temp * temp) / x; 
+        double result = 1.0;
+        while (exp > 0) {
+            if (exp % 2 == 1) {
+                result *= x;
+            }
+            x *= x;   
+            exp /= 2;   
+        }
+
+        return result;
     }
-}
-
-int main() {
-    double base;
-    int exponent;
-    
-    cout << "Enter base: ";
-    cin >> base;
-    cout << "Enter exponent: ";
-    cin >> exponent;
-    
-    cout << base << "^" << exponent << " = " << power(base, exponent) << endl;
-    return 0;
-}
+};
