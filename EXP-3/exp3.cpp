@@ -1,20 +1,16 @@
-#include <iostream>
-#include<vector>
-#include<map>
-using namespace std;
 
-int main() {
-    int n;
-    cin>>n;
-    vector<int> arr(n);
-   map<int,int> freq;
-    for(int i = 0;i<n;i++){
-        cin>>arr[i];
-        freq[arr[i]]++;
+class Solution {
+public:
+    vector<vector<int>> countFreq(vector<int>& arr) {
+        unordered_map<int, int> mp;
+        vector<vector<int>> ans;         
+        for (int num : arr) {
+            mp[num]++;
+        }
+        for (auto &it : mp) {
+            ans.push_back({it.first, it.second});
+        }
+
+        return ans;
     }
-    cout<< "Element"<<" : "<<" Frequency "<<endl;
-    for(auto c: freq){
-        cout<<c.first<<" : "<<c.second<<endl;
-    }
-    return 0;
-}
+};
